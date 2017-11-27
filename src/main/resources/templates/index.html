@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+<nav th:replace="layout :: header"></nav>
+<div class="container main-content">
+	<h1>Welcome to my Books Store</h1>
+	<p><a th:href="@{/book}">Books</a> | <a th:href="@{/author}">Authors</a></p>
+</div>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

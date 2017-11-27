@@ -1,0 +1,49 @@
+.navbar-title {
+	color: #ffffff;
+	font-size: 1.5em;
+}
+
+.main-content {
+	min-height: 500px;
+	max-width: 700px;
+	margin-top: 70px;
+}
+
+.list {
+	max-width: 800px;
+}
+
+.form {
+	max-width: 450px;
+}
+
+.row {
+	margin-top: 30px;
+}
+
+.table th, td {
+   text-align: center;
+}
+
+.field-error {
+	border: 1px solid #ff0000;
+	margin-bottom: 10px;
+}
+
+footer {
+	text-align: right;
+}
+
+.navbar-brand img {
+	margin-top: -15px;
+}
+
+.table .thead-light th{
+	background-color: #e9ecef;
+	white-space: nowrap;
+	border-color: #e9ecef;
+}
+
+.table td {
+	text-align: left;
+}
