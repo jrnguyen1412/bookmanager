@@ -2,6 +2,8 @@ package jp.suumai.bookmanager.controller.form;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -20,4 +22,6 @@ public class BookForm implements Serializable {
 	private String delUserId;
 	private String delId;
 	private String delFlg;
+	private String bookImage;
+	private MultipartFile imageFile;
 }

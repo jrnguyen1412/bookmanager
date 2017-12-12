@@ -46,4 +46,7 @@ public class BookInfo {
 
 	@Column(name = "DEL_FLG")
 	private boolean delFlg;
+
+	@Column(name = "BOOK_IMAGE")
+	private String bookImage;
 }

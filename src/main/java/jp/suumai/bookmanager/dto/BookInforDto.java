@@ -21,4 +21,5 @@ public class BookInforDto implements Serializable {
 	private String delUserId;
 	private String delId;
 	private boolean delFlg;
+	private String bookImage;
 }

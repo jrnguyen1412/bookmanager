@@ -1,6 +1,13 @@
 package jp.suumai.bookmanager.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -12,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import jp.suumai.bookmanager.controller.form.BookForm;
@@ -30,6 +38,9 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 	
+	//Save the uploaded file to this folder
+    private final Path rootFolder = Paths.get("src/main/resources/static/img");
+    
 	/**
 	 * Add a new book
 	 * @return
@@ -46,9 +57,27 @@ public class BookController {
 	 */
 	@PostMapping(value = "/book/save")
 	public ModelAndView saveBook(@ModelAttribute("book") BookForm book) {
-		BookInforDto bookInfoDto = new BookInforDto();
-		BeanUtils.copyProperties(book, bookInfoDto);
-		bookService.save(bookInfoDto);
+		MultipartFile file = book.getImageFile();
+		
+		if (file == null || file.isEmpty()) {
+			return new ModelAndView("/book/bookForm", "errMsg", "Please select a file to upload!");
+		}
+		
+		try {
+
+        	DateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss_");
+        	Calendar cal = Calendar.getInstance();
+        	
+        	Files.copy(file.getInputStream(), this.rootFolder.resolve(sdf.format(cal.getTime()) + file.getOriginalFilename()));
+        	book.setBookImage(sdf.format(cal.getTime()) + file.getOriginalFilename());
+
+    		BookInforDto bookInfoDto = new BookInforDto();
+    		BeanUtils.copyProperties(book, bookInfoDto);
+    		
+    		bookService.save(bookInfoDto);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		return new ModelAndView("redirect:/book");
 	}

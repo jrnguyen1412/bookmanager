@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Spring Boot file upload example</title>
+	<link href="/css/bootstrap-imageupload.css" rel="stylesheet" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/js/bootstrap-imageupload.js"></script>
+</head>
+
+<body>
+	<h1>Spring Boot - Upload Status</h1>
+	<div th:if="${message}">
+		<h2 th:text="${message}"></h2>
+	</div>
+
+	<!-- Preview image -->
+	<div th:if="${not #lists.isEmpty(files)}" th:each="file : ${files}">
+		<img src="http://placehold.it/600" th:src="@{/images/{pathFile}(pathFile=${file})}" th:alt="${file}" style="height: 200px;"/>
+	</div>
+</body>
+
+</html>

@@ -7,4 +7,5 @@ public class BookInforViewModel {
 	private int bookId;
 	private String bookName;
 	private String bookIsbn;
+	private String bookImage;
 }

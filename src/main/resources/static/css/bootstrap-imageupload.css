@@ -1,0 +1,13 @@
+img{
+  max-width:330px;
+}
+
+
+input[type=file]{
+padding:5px;
+background:#FF9933;}
+
+
+input[type=submit]{
+padding:2px;
+background:#FFFF0;}
